@@ -1,0 +1,99 @@
+
+def concordance():
+    f = open("aboutKNU2.txt", 'r')
+    C = {}
+    C_cnt = []
+    l_num = 1;
+    while True:
+        line = f.readline()
+        list_line = line.replace(",", "").replace(".","").replace("!","").split()
+
+        for i in list_line:
+            if i in C:
+                C.get(i).append(l_num)
+
+            else:
+                C_cnt = []
+                C[i] = C_cnt
+                C_cnt.append(l_num)
+
+        l_num +=1
+
+        if not line:
+            break
+
+    len(list(C))
+    for i in list(C):
+        print(i, C.get(i))
+
+    f.close()
+
+def sort_concordance():
+    f = open("aboutKNU2.txt", 'r')
+    print("알파벳 순서대로 정렬합니다.")
+    C = {}
+    l_num = 1;
+    while True:
+        line = f.readline()
+        list_line = line.replace(",", "").replace(".", "").replace("!", "").split()
+
+        for i in list_line:
+            if i in C:
+                C.get(i).append(l_num)
+
+            else:
+                C_cnt = []
+                C[i] = C_cnt
+                C_cnt.append(l_num)
+
+        l_num += 1
+
+        if not line:
+            break
+
+    len(list(C))
+
+
+    print("\n\n")
+    for key, value in sorted(C.items()):
+        print(key, ":", value)
+
+    f.close()
+
+def s_concordance():
+    f = open("aboutKNU2.txt", 'r')
+    print("중복을 제거한 색인입니다.")
+    C = {}
+    C_cnt = []
+    l_num = 1;
+    while True:
+        line = f.readline()
+        list_line = line.replace(",", "").replace(".","").replace("!","").split()
+
+        for i in list_line:
+            if i in C:
+                if l_num in C.get(i):
+                    pass
+                else:
+                    C.get(i).append(l_num)
+
+            else:
+                C_cnt = []
+                C[i] = C_cnt
+                C_cnt.append(l_num)
+
+        l_num +=1
+
+        if not line:
+            break
+
+    len(list(C))
+    for i in list(C):
+        print(i, C.get(i))
+
+    f.close()
+
+
+concordance()
+sort_concordance()
+s_concordance()

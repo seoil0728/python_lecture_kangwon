@@ -1,0 +1,98 @@
+1번문제
+# 1번
+
+#약수를 출력하는 함수 정의
+def print_divisor(x):
+    d_cnt = 0
+    # 사용자로부터 입력받은 숫자에 대해서 약수를 구하기 시작한다.
+    for i in range(1, x + 1):
+        #약수 구하는 공식
+        if x % i == 0:
+            print(i, " ")
+            d_cnt += 1
+            i += 1
+        else:
+            i += 1
+            pass
+        #약수 갯수를 반환한다.
+    return d_cnt
+
+#사용자로부터 입력 받는 함수
+def Input_number():
+    a = int(input("input your number: "))
+    return a
+
+
+print("input your number to print divisor!!")
+
+# 함수 실행
+c = print_divisor(Input_number())
+print("d_cnt =", c)
+
+
+# 2번
+
+# 입력받은 정수를 분류하는 함수 작성
+def input_count():
+    #각각의 정수를 세기 위한 변수 초기화
+    x = 0
+    P_cnt = 0
+    N_cnt = 0
+    Z_cnt = 0
+    # 10번을 반복 즉, 10번의 입력
+    while (x < 10):
+        a = int(input("Enter Number: "))
+        # 다음 조건문을 통해 정수를 분류한다.
+        if a >= 1:
+            P_cnt += 1
+        elif a == 0:
+            Z_cnt += 1
+        else:
+            N_cnt += 1
+
+        x += 1
+        
+    #각 값들을 반환
+    return P_cnt, N_cnt, Z_cnt
+
+# 함수를 실행시키고 결과 값을 저장
+a, b, c = input_count()
+
+#출력
+print("Number of Positive Integers:", a)
+print("Number of Negative Integers:", b)
+print("Number of Zero:", c)
+
+# 3번
+
+#랜덤 게임을 위한 random 모듈 import
+import random
+# 1부터 20 사이의 숫자중 하나를 임의로 선택하여 저장
+correct_num = random.randint(1,20)
+
+# 난수 맞추기 게임 정의
+def Question_num():
+    print("Random Game Start!!")
+    # 맞춘 횟수를 알기 위해 변수 초기화
+    Q_cnt = 0
+    # #맞출때 까지 반복한다.
+    while True:
+        #사용자로부터 맞출 때 까지 입력을 받는다.
+        a = int(input("Enter answer Number: "))
+        Q_cnt +=1
+        #아래 조건문을 가지고 내가 입력받은 수를 난수와 비교하여 결과를 출력 한다.
+        if a == correct_num:
+          print("your num is correct!")
+          break
+        elif a > correct_num:
+              print("your num is big!!")
+              continue
+        elif a < correct_num:
+              print("your num is small!!")
+              continue
+    # 몇번만에 맞췄는지를 반환
+    return Q_cnt
+
+#함수 실행 및 출력
+b = Question_num()
+print("I have ", b,"th chellenge")

@@ -1,0 +1,74 @@
+fr = open("test__.txt", 'r')
+fw = open("result.txt", 'w')
+
+def count_word(line):
+    cnt_word = 0
+    new_word = line.replace(",", "").replace("!", "").replace(".", "").split(' ')
+
+    for i in new_word:
+        if i.isdigit():
+            pass
+        else:
+            cnt_word += 1
+
+    return cnt_word
+
+def long_word(line):
+    max_l = 0
+    max_w =""
+    new_word = line.replace(",", "").replace("!", "").replace(".", "").split(' ')
+
+    for i in new_word:
+        if max_l < len(i):
+            max_l = len(i)
+            max_w = i
+
+    return max_w
+
+
+def short_word(line):
+    min_l = 10
+    min_w =""
+    new_word = line.replace(",", "").replace("!", "").replace(".", "").split(' ')
+
+    for i in new_word:
+        if min_l > len(i):
+            min_l = len(i)
+            min_w = i
+
+    return min_w
+
+
+def count_sen(line):
+    cnt_sen = 0
+    real_s = []
+    arr_sen = line.split('!') # 2문장으로 나눠짐
+    for i in arr_sen:
+        real_s +=i.split('.')   #맨 마지막 whiteSpace가 생기는 까닭은 .을 기준으로 나누기 때문이다.
+
+    for i in range(len(real_s)-1):
+        cnt_sen +=1
+
+    return cnt_sen
+
+line = fr.readline()
+N_w = count_word(line)
+N_s = count_sen(line)
+max_w = long_word(line)
+min_w = short_word(line)
+
+print("Number of words:", N_w)
+print("Number of sentences:", N_s)
+print("Longest word:", max_w)
+print("shortest word:", min_w)
+
+fw.write("Number of words: " + str(N_w) + "\n")
+fw.write("Number of sentences: " + str(N_s)+ "\n")
+fw.write("Longest word: " + max_w+ "\n")
+fw.write("shortest word: " + min_w+ "\n")
+
+fr.close()
+fw.close()
+
+
+

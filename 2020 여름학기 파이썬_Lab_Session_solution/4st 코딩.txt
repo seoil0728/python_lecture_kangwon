@@ -1,0 +1,88 @@
+# 1번
+# 입력된 세 숫자를 비교하기 위한 함수 작성, 각 크기를 비교하며 가장 큰 숫자를 출력
+def compare(a, b, c):
+    if a > b:
+        if a > c:
+            return a
+        else:
+            return c
+    else:
+        if b > c:
+            return b
+        return c
+
+
+# main
+# 정수형의 세 숫자를 입력받음
+a = int(input("Enter a: "))
+b = int(input("Enter b: "))
+c = int(input("Enter c: "))
+
+#가장 큰 수를 max에 저장
+max = compare(a, b, c)
+#출력
+print(a, b, c, "중 가장 큰 값은", max, "입니다.")
+
+
+
+# 2번
+# 전기 사용량을 계산하기 위한 함수 작성
+def cal_Electricity(a, b):
+    #전기 사용량이 음수가 될 수 없으므로, 입력된 값이 0보다 작으면 종료
+    if a < 0:
+        return 0
+
+    else:
+        if b == 1:
+            fianl_comsumption = a * 535
+            return fianl_comsumption + (fianl_comsumption * 3 / 100)
+        elif b == 2:
+            fianl_comsumption = a * 377
+            return fianl_comsumption + (fianl_comsumption * 3 / 100)
+        elif b == 3:
+            fianl_comsumption = a * 291
+            return fianl_comsumption + (fianl_comsumption * 3 / 100)
+        elif b > 3:
+            return 0
+
+
+# main
+# 각 전기 사용량 및 등급에 대한 정수값으로 입력을 받는다.
+a = int(input("electricity usage: "))
+b = int(input("grade:  "))
+#등급이 4등급부터는 없으므로 다음과 같은 문장 출력
+if b > 3:
+    print("No such grade")
+
+#조건에 합당한 경우 다음과 같이 연산결과를 출력하며 이때 소수점 둘째 자리 까지 출력
+else:
+    print("Your amount is", round(cal_Electricity(a, b), 2))
+
+#3번
+#로그인 하기 위한 아이디와  비밀번호를 전역변수으로 설정한다.
+real_id = 'admin'
+real_pw = 1234
+
+#ID, PASSWORD를 체크하기 위한 함수 작성
+def Id_pw_check():
+    
+    #미리 선언한 변수를 전연변수로 쓰기 위한 선언
+    global real_id
+    global real_pw
+
+    id = input("Login: ")
+    
+    #다음의 조건에 따른 id, passwd를 검사하고 해당하는 오류문을 출력한다.
+    if id == real_id:
+        pw = int(input("password: "))
+        if pw == real_pw:
+            print("Welcome, admin")
+        else:
+            print("Wrong password")
+    else:
+        print("Your are not admin")
+
+
+# main
+#함수 실행
+Id_pw_check()

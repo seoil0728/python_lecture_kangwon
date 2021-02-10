@@ -1,0 +1,65 @@
+1번
+#a에 정수형 값을 입력받는다.
+a = int(input("첫번째 값을 입력해주세요 : "))
+
+#함수를 정의
+def myAddition(x):
+  # 입력 받은 값에 1을 더해줌
+  x += 1
+  #반환함
+  return x
+
+#함수를 정의
+def addOne(a):
+  #외부에서 입력받은 변수를가지고 myAddition 함수의 파라미터로 사용, 결과값을 a라는 변수에 저장 
+  a = myAddition(a)
+  #반환
+  return a
+
+#addOne() 함수에 입력받은 값을 넣고 출력
+print(addOne(a))
+
+2번
+##사칙연산을 함수로 정의
+def myAdd (a, b):
+  return a + b
+def mySubtract(a, b):
+  return a - b
+def myMutiply(a, b):
+  return a * b
+def myDivide(a, b):
+  return a / b
+##여기까지 사칙연산
+
+#사칙연산 함수를 호출할 myCalculate 함수
+def myCalculate(func, a, b):
+  #연산 함수 및 각 연산에 필요한 숫자를 함께 입력받아 함수를 호출 및 반환
+  return func(a, b)
+
+#각 연산별로 호출한 결과를 출력
+print(myCalculate(myAdd, 1, 2))
+print(myCalculate(mySubtract, 1, 2))
+print(myCalculate(myMutiply, 1, 2))
+print(myCalculate(myDivide, 1, 2))
+
+3번
+# 각각의 화씨를 섭씨로, 섭씨를 화씨로 변환하는 함수를 정의
+def FtoC(F):
+  return (F - 32) * 5 / 9
+
+def CtoF(C):
+ return C * 9 / 5 + 32
+
+# 함수를 중간에서 호출하기 위한 Reverse 함수 작성
+def Reverse(val1, val2):
+  #결과를 반환
+  return print(val2, " -> ", val1(val2))
+
+#입력단계, 온도계 및 온도를 입력받음
+val1 = input("변환하고 싶은 온도계를 골라주세요. (CtoF, FtoC)")
+#string 형은 함수를 호출할 수 없기 때문에 연산 가능한 형태로 만들어 주기 위한 eval함수를 사용
+val1 = eval(val1)
+val2 = int(input("온도를 입력해주세요 : "))
+
+#함수 호출
+Reverse(val1, val2)

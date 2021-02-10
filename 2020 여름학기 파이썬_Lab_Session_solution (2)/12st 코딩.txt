@@ -1,0 +1,55 @@
+f = open("P_score.txt", 'r')
+
+def chk_same_score():
+    max_num = 0;
+    line = []
+    trans_set = {}
+    cnt= 0
+    year = 2011
+    while True:
+        l = f.readline()
+        #print(l)
+
+        if l.endswith("년\n"):
+            pass
+        else:
+            if l == "":
+                pass
+            else:
+                l = l.replace("Python: ", "").replace("\n","")
+                l = int(l)
+                line.append(l)
+                cnt +=1
+
+        if cnt == 100:
+            cnt = 0
+            #print(year)
+            for i in range(100):
+                trans_set = set(line)
+
+            sorted_line = sorted(trans_set, reverse=True)
+            print(year,"년차")
+            for i in sorted_line:
+                print(i, ":",line.count(i))
+                if line.count(i) > max_num:
+                    max_num = line.count(i)
+                    #print(line.count(i))
+
+            print(year, "년의 최대 동점자는 ", max_num,"명입니다.")
+            max_num = 0
+            year += 1
+            line = []
+            trans_set = {}
+
+
+
+        if not l:
+            break
+
+
+
+
+
+
+
+chk_same_score();

@@ -1,0 +1,87 @@
+# 1번
+# string 모듈 사용을 위한 import
+import string
+# d 에다가 대소문자가 모두 들어가 있는 문자열을 저장
+d = string.ascii_letters
+
+#함수 정의
+def Is_num_symbol(str):
+    #실제적으로 문자를 저장하기 위한 빈 문자열 선언
+    real_sr = ""
+    #문자열을 한 글자씩 접근한다.
+    for i in str:
+        # 문자열에 포함 되지 않는다면, 즉 숫자 혹은 특수문자.
+        if not i in d:
+          real_sr += i
+
+    #출력
+    print(real_sr)
+
+# 사용자로부터 입력
+st = input("your string: ")
+#함수 실행
+Is_num_symbol(st)
+=========================================
+# 2번
+# 같은 위치에 있는 글자와 그 위치를 출력하는 함수 정ㅈ의
+def Is_same_place(a,b):
+    #먼저 단어의 길이, 단어의 길이가 달라도 짧은 단어를 기준
+    if a > b:
+        cnt = len(b)
+    else:
+        cnt = len(a)
+        
+    # 무한 반복문을 돌리려고 할때, 중지를 해줄 변수 선언
+    X = 0
+    #무한 반복문
+    while True:
+        # X를 증가시면서 가장 짧은 단어의 길이랑 동등한 경우 종료, 이는 더이상 비교할 글자가 없다는 뜻
+        if X == cnt:
+            break
+        #동일한 위치에 있다면?
+        if a[X] == b[X]:
+            #출력
+            print(a[X]," is at", X)
+        
+        #변수 값 1씩 증가
+        X +=1
+
+#사용자로부터 입력
+a = input("Enter your first string: ")
+b = input("Enter your second string: ")
+Is_same_place(a,b)
+===========================================
+# 3번
+
+#스트링 모듈 사용을 위한 import
+import string
+#숫자만 정의된 문자열을 Num에 저장
+Num = string.digits
+# 소문자만 모여있는 문자열을 lc에 저장
+lc = string.ascii_lowercase
+
+# passwd를 체크하는 함수 정의
+def Check_paswd(X):
+    # 첫번째 조건, 길이가 8보다 작으면, 오류를 출력하고 종료
+    if len(X) < 8:
+        print("password should be at least 8")
+        return 0
+    # 두번째 조건, 첫번째 글자가 소문자가 아닐경우, 오류를 출력하고 종료
+    # 이때, 인덱스와 아까 문자열을 저장한 변수와 비교를 하여, 아니라면 종료하고 맞으면 다음 elif로 넘어간다.
+    elif not X[0] in lc:
+        print("first letter should be a lower letter")
+        return 0
+    # 세번째 조건, 맨 마지막 두글자가 숫자가 아닐경우, 오류를 출력하고 종료
+    # 이때, 인덱스와 아까 문자열을 저장한 변수와 비교를 하여, 아니라면 종료하고 맞으면 다음 else로 넘어간다.
+    elif not X[-1] in Num and not X[-2] in Num:
+        print("last two letters should be numbers")
+        return 0
+    # 문제가 없으므로 올바른 passwd라고 출력
+    else:
+        print("Nice Password!")
+
+
+#사용자로부터의 입력
+mypasswd = input("Enter your Password: ")
+#함수 실행
+Check_paswd(mypasswd)

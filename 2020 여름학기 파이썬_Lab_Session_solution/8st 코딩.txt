@@ -1,0 +1,142 @@
+import random
+
+suit_names = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+face_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queeen', 'King']
+value = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+def create_deck():
+    deck = []
+
+    for i in suit_names:
+        k = 0
+        while k<13:
+            deck.append((face_names[k],i,value[k]))
+            k +=1
+
+    '''
+        for i in suit_names:
+            for j, k in zip(face_names, value):
+                deck.append((j,i,k))
+    '''
+
+    random.shuffle(deck)
+    #print(deck)
+
+    return deck
+
+
+def hand_value(hand):
+    sum = 0
+    A_sum = 0
+    for i in hand:
+        # Ace가 나올 경우, 별로의 값에 저장한다.
+        if i[0] == 'Ace':
+            A_sum = 11
+        else:
+            sum += i[2]
+    # Ace가 나왔을 경우, 기존의 계산한 것에 대해서 1을 더할지 11을 더할지 판단하는 조건문
+    if  A_sum == 11:
+        if sum + A_sum <= 21:
+            sum +=A_sum
+        else:
+            A_sum = 1
+            sum += A_sum
+
+    return sum
+
+def card_string(card):
+    '''
+    if card[1] == 'Clubs':
+        return str(card[0] +" of " +card[1])
+    elif card[1] == 'Diamonds':
+        return str(card[0] +" of " +card[1])
+    elif card[1] == 'Hearts':
+        return str(card[0] +" of " +card[1])
+    elif card[1] == 'Spades':
+        return str(card[0] +" of " +card[1])
+    '''
+    return str(card[0] + " of " + card[1])
+def ask_yesno(prompt):
+  #ask = input(prompt)
+  while True:
+      ask = input(prompt)
+
+      if ask == 'y':
+          return True
+
+      elif ask == 'n':
+          return False
+
+      else:
+          print("I beg your pardon!")
+
+
+deck = create_deck()
+deck = [('Ace', 'Spades', 1 ),(9, 'Spades', 9 )]
+print(hand_value(deck))
+
+
+### Now the game start!
+while (True):    
+    # prompt for starting a new game and create a deck
+    print ("Welcome to Black Jack!\n")
+    deck = create_deck()
+
+    #print(deck)
+    # create two hands of dealer and player
+    dealer = []
+    player = []
+
+    # initial two dealings
+    card = deck.pop()
+    print ("You are dealt " + card_string(card))
+    player.append(card)
+    card = deck.pop()
+    print ("Dealer is dealt a hidden card")
+    dealer.append(card)
+    card = deck.pop()
+    print ("You are dealt " + card_string(card))
+    player.append(card)
+    card = deck.pop()
+    print ("Dealer is dealt " + card_string(card))
+    dealer.append(card)
+    print ("Your total is", hand_value(player))
+
+    # player's turn to draw cards
+    while (hand_value(player) < 21 and ask_yesno("Would you like another card? (y/n) ")):
+        # draw a card for the player
+        card = deck.pop()
+        print ("You are dealt " + card_string(card))
+        player.append(card)
+        print ("Your total is", hand_value(player))
+        
+    # if the player's score is over 21, the player loses immediately.     
+    if (hand_value(player) > 21):
+        print ("You went over 21! You lost.")
+    else:
+        # draw cards for the dealer while the dealer's score is less than 17
+        print ("\nThe dealer's hidden card was " + card_string(dealer[0]))
+        while (hand_value(dealer) < 17):
+            card = deck.pop()
+            print ("Dealer is dealt " + card_string(card))
+            dealer.append(card)
+        print ("The dealer's total is", hand_value(dealer))
+        
+        # summary        
+        player_total = hand_value(player)
+        dealer_total = hand_value(dealer)
+        print ("\nYour total is", player_total)
+        print ("The dealer's total is", dealer_total)
+        
+        if (dealer_total > 21):
+            print ("The dealer went over 21! You win!")
+        else:
+            if (player_total > dealer_total):
+                print ("You win!")
+            elif (player_total < dealer_total):
+                print ("You lost!")
+            else:
+                print ("You have a tie!")
+            
+    if (not ask_yesno("\nPlay another round? (y/n) ")):
+        break
