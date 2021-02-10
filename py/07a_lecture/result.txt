@@ -1,0 +1,4 @@
+Number of words: 336
+Number of sentence: 12
+Longest word: comprehensive
+Shortest word: a
