@@ -17,3 +17,11 @@
 13. Dictionary. What is Dictionary? Dictionary methods, keys and values, keys are unique and immutable, loop, sorted(by list), operators in dictionary
 
 and the set of python files (Lecture Practice, lab)
+
+Computational Thinking - 컴퓨터처럼생각하기   
+   
+DPP - 분산및병렬프로그래밍   
+   
+Network Security - 네트워크보안
+
+Information Retrieval - 정보검색
